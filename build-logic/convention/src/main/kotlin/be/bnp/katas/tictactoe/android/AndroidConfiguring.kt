@@ -43,4 +43,13 @@ private fun LibraryExtension.configure(versionCatalog: VersionCatalog) {
         }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildTypes {
+        release {
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "./proguard-rules.pro"
+            )
+            consumerProguardFiles("./proguard-rules.pro")
+        }
+    }
 }
