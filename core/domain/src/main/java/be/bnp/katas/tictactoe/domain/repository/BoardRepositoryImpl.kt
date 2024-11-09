@@ -17,7 +17,7 @@ class BoardRepositoryImpl(
 
     override fun updatePoint(point: BoardPoint) {
         val (row, column) = point
-        _sheet.points[row][column] = point
+        _sheet.updatePointFor(row, column, point)
     }
 
     override fun isPointValidForBoard(point: BoardPoint): Boolean {

@@ -2,11 +2,20 @@ package be.bnp.katas.tictactoe.data
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
 
+/**
+ * 2D representation of the board.
+ * The main purpose is to hold the points and serve operations on them
+ */
 @JvmInline
-value class Board(val points: MutableList<MutableList<BoardPoint>>) {
+value class Board(private val _points: MutableList<MutableList<BoardPoint>>) {
+    val points: List<List<BoardPoint>> get() = _points
 
     fun getPointFor(row: Int, column: Int): BoardPoint {
-        return points[row][column]
+        return _points[row][column]
+    }
+
+    fun updatePointFor(row: Int, column: Int, point: BoardPoint) {
+        _points[row][column] = point
     }
 
     companion object {
