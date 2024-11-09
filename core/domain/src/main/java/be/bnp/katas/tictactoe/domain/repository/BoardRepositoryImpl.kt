@@ -14,15 +14,12 @@ class BoardRepositoryImpl(
     override val sheet: BoardPointsRepresentation
         get() = TODO("Not yet implemented")
 
-    override fun updatePoint(point: BoardPoint) {
-        TODO("Not yet implemented")
-    }
+    override fun updatePoint(point: BoardPoint) {}
 
     override fun isPointValidForBoard(point: BoardPoint): Boolean {
         TODO("Not yet implemented")
     }
 
     override fun cleanBoard() {
-        TODO("Not yet implemented")
     }
 }
