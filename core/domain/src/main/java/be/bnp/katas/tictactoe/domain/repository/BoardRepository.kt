@@ -1,10 +1,10 @@
 package be.bnp.katas.tictactoe.domain.repository
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.Board
+import be.bnp.katas.tictactoe.data.BoardPoints
 
 interface BoardRepository {
-    val board: Board
+    val boardPoints: BoardPoints
 
     fun updatePoint(point: BoardPoint)
 

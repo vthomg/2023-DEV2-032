@@ -2,6 +2,7 @@ package be.bnp.katas.tictactoe.domain.repository
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.Board
+import be.bnp.katas.tictactoe.data.BoardPoints
 import be.bnp.katas.tictactoe.data.model.isEmpty
 
 class BoardRepositoryImpl(
@@ -12,17 +13,17 @@ class BoardRepositoryImpl(
         private const val DEFAULT_BOARD_SIZE = 3
     }
 
-    private val _board = Board.createEmptyFor(boardSize)
+    private val board: Board = Board.createEmptyFor(boardSize)
 
-    override val board: Board get() = _board
+    override val boardPoints: BoardPoints get() = board.points
 
     override fun updatePoint(point: BoardPoint) {
         val (row, column) = point
-        _board.updatePointFor(row, column, point)
+        board.updatePointFor(row, column, point)
     }
 
     override fun isPointValidForBoard(point: BoardPoint): Boolean {
-        return point.row < _board.size && point.column < _board.size && _board.getPointFor(
+        return point.row < board.size && point.column < board.size && board.getPointFor(
             point.row,
             point.column
         ).isEmpty

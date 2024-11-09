@@ -7,8 +7,10 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
  * The main purpose is to hold the points and serve operations on them
  */
 @JvmInline
-value class Board(private val _points: MutableList<MutableList<BoardPoint>>) {
-    val points: List<List<BoardPoint>> get() = _points
+value class Board(
+    private val _points: MutableList<MutableList<BoardPoint>>,
+) {
+    val points: BoardPoints get() = _points
     val size: Int get() = _points.size
 
     fun getPointFor(row: Int, column: Int): BoardPoint {

@@ -30,7 +30,7 @@ class BoardRepositoryTest {
 
     @Test
     fun `BoardRepository creates the sheet`() {
-        assertTrue(boardRepository.board.points.isNotEmpty())
+        assertTrue(boardRepository.boardPoints.isNotEmpty())
     }
 
     @Test
@@ -38,14 +38,16 @@ class BoardRepositoryTest {
         val givenBoardSize = 6
         val expectedSheetSize = givenBoardSize * givenBoardSize
 
-        val board = BoardRepositoryImpl(givenBoardSize)
+        val boardRepo = BoardRepositoryImpl(givenBoardSize)
 
-        assertEquals(expectedSheetSize, board.board.points.flatten().size)
+        assertEquals(expectedSheetSize, boardRepo.boardPoints.flatten().size)
     }
 
     @Test
     fun `BoardRepository creates the sheet with only empty points`() {
-        assertFalse(boardRepository.board.points.flatten().any { !it.isEmpty })
+        val boardRepo = BoardRepositoryImpl()
+
+        assertFalse(boardRepo.boardPoints.flatten().any { !it.isEmpty })
     }
 
     @Test
@@ -55,7 +57,7 @@ class BoardRepositoryTest {
         boardRepository.updatePoint(givenPoint)
 
         val (row, column) = givenPoint
-        assertEquals(givenPoint, boardRepository.board.getPointFor(row, column))
+        assertEquals(givenPoint, boardRepository.boardPoints[row][column])
     }
 
     @Test
