@@ -13,14 +13,14 @@ class IsRowVictoryUseCase(
     private val boardPoints = boardRepository.boardPoints
 
     operator fun invoke(point: BoardPoint): Boolean {
-        val (_, column) = point
+        val (row) = point
 
-        for (rowIndex in boardPoints.indices) {
-            val pointOnBoard = boardPoints[rowIndex][column]
+        for (columnIndex in boardPoints.indices) {
+            val pointOnBoard = boardPoints[row][columnIndex]
             // Quit the loop, user did not won already since there is already different point
             if (pointOnBoard.state != BoardPoint.State.EMPTY && pointOnBoard.state != point.state) break
             // If iteration went till the last element with no breaks, user won
-            else if (rowIndex == boardPoints.size - 1) return true
+            else if (columnIndex == boardPoints.size - 1) return true
         }
         return false
     }
