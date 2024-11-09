@@ -67,4 +67,12 @@ class BoardRepositoryTest {
         assertFalse(boardRepository.isPointValidForBoard(givenPoint))
     }
 
+    @Test
+    fun `BoardRepository updatePoint() rejects invalid point`() {
+        val givenPoint = BoardPoint(5, 0, BoardPoint.State.CROSS)
+
+        boardRepository.updatePoint(givenPoint)
+
+        assertFalse(boardRepository.boardPoints.flatten().any { it == givenPoint })
+    }
 }
