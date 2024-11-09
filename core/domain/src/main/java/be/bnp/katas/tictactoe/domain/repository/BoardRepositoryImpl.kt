@@ -15,7 +15,10 @@ class BoardRepositoryImpl(
 
     override val sheet: Board get() = _sheet
 
-    override fun updatePoint(point: BoardPoint) {}
+    override fun updatePoint(point: BoardPoint) {
+        val (row, column) = point
+        _sheet.points[row][column] = point
+    }
 
     override fun isPointValidForBoard(point: BoardPoint): Boolean {
         TODO("Not yet implemented")
