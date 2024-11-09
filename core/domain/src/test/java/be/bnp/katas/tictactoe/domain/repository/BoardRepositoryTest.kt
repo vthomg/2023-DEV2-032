@@ -1,6 +1,7 @@
 package be.bnp.katas.tictactoe.domain.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.model.isEmpty
 import org.junit.Assert.*
 import org.junit.Before
@@ -45,6 +46,16 @@ class BoardRepositoryTest {
     @Test
     fun `BoardRepository creates the sheet with only empty points`() {
         assertFalse(boardRepository.sheet.points.flatten().any { !it.isEmpty })
+    }
+
+    @Test
+    fun `BoardRepository updates the point on the board`() {
+        val givenPoint = BoardPoint(0, 0, BoardPoint.State.CROSS)
+
+        boardRepository.updatePoint(givenPoint)
+
+        val (row, column) = givenPoint
+        assertEquals(givenPoint, boardRepository.sheet.getPointFor(row, column))
     }
 
 }
