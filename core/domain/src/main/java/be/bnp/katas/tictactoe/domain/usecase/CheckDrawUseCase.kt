@@ -15,6 +15,9 @@ class CheckDrawUseCase(
      * Should be called only after checking for victory
      */
     operator fun invoke(point: BoardPoint): Boolean {
-        return false
+        val (row, column) = point
+        boardPoints[column][row] = point
+
+        return !boardPoints.any { it.isEmpty() }
     }
 }
