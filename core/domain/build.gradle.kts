@@ -13,6 +13,7 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.testing.mockito)
+    testImplementation(libs.testing.mockk)
     testImplementation(libs.testing.androidx.core)
 
     androidTestImplementation(libs.androidx.junit)
