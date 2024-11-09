@@ -1,6 +1,7 @@
 package be.bnp.katas.tictactoe.domain.game
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
+import be.bnp.katas.tictactoe.data.model.isEmpty
 import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 import be.bnp.katas.tictactoe.domain.usecase.draw.DrawUseCase
 import be.bnp.katas.tictactoe.domain.usecase.victory.VictoryUseCase
@@ -29,7 +30,9 @@ class GameRulesImpl(
     }
 
     override fun isAllowedToPlacePoint(point: BoardPoint): Boolean {
-        TODO("Not yet implemented")
+        val (row, column) = point
+        // According to rules it's allowed to place point only if the position is empty
+        return boardRepository.boardPoints[row][column].isEmpty
     }
 
     override fun reset() {
