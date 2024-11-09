@@ -7,7 +7,7 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
  * Check if the user won for the row
  * If there are 3 in a row, then the user wins
  */
-class IsRowVictoryUseCase(
+class CheckRowVictoryUseCase(
     boardRepository: BoardRepository,
 ) {
     private val boardPoints = boardRepository.boardPoints

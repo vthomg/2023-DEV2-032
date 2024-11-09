@@ -9,23 +9,23 @@ import io.mockk.mockk
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class IsRowVictoryUseCaseTest {
+class CheckColumnVictoryUseCaseTest {
     companion object {
-        fun useCaseForBoardPoints(boardPoints: BoardPoints): IsRowVictoryUseCase {
+        fun useCaseForBoardPoints(boardPoints: BoardPoints): CheckColumnVictoryUseCase {
             val repositoryMocked = mockk<BoardRepositoryImpl>()
             every { repositoryMocked.boardPoints } returns boardPoints
-            return IsRowVictoryUseCase(repositoryMocked)
+            return CheckColumnVictoryUseCase(repositoryMocked)
         }
     }
 
     @Test
-    fun `Row Victory is detected`() {
+    fun `Column Victory is detected`() {
         val givenBoard = """
-            x,_,x
+            o,_,x
             o,x,x
-            _,o,o
+            _,o,_
         """.trimIndent()
-        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.NOUGHT)
+        val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.CROSS)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 

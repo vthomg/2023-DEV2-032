@@ -9,23 +9,37 @@ import io.mockk.mockk
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class IsColumnVictoryUseCaseTest {
+class CheckDiagonalVictoryUseCaseTest {
     companion object {
-        fun useCaseForBoardPoints(boardPoints: BoardPoints): IsColumnVictoryUseCase {
+        fun useCaseForBoardPoints(boardPoints: BoardPoints): CheckDiagonalVictoryUseCase {
             val repositoryMocked = mockk<BoardRepositoryImpl>()
             every { repositoryMocked.boardPoints } returns boardPoints
-            return IsColumnVictoryUseCase(repositoryMocked)
+            return CheckDiagonalVictoryUseCase(repositoryMocked)
         }
     }
 
     @Test
-    fun `Column Victory is detected`() {
+    fun `Diagonal top left to bottom right victory is detected`() {
         val givenBoard = """
-            o,_,x
-            o,x,x
-            _,o,_
+            x,_,x
+            o,x,o
+            o,o,_
         """.trimIndent()
         val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Diagonal top right to bottom left victory is detected`() {
+        val givenBoard = """
+            x,_,x
+            o,x,o
+            _,o,o
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.CROSS)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
