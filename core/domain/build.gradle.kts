@@ -9,6 +9,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:data"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
