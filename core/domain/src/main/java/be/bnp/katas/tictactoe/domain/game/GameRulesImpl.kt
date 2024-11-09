@@ -10,7 +10,7 @@ class GameRulesImpl(
     private val boardRepository: BoardRepository,
     private val victoryCases: List<VictoryUseCase>,
     private val drawUseCase: DrawUseCase,
-    firstTurn: BoardPoint.State = BoardPoint.State.CROSS,
+    private val firstTurn: BoardPoint.State = BoardPoint.State.CROSS,
 ) : GameRules {
 
     private var _currentUserTurn: BoardPoint.State = firstTurn
@@ -36,7 +36,8 @@ class GameRulesImpl(
     }
 
     override fun reset() {
-        TODO("Not yet implemented")
+        _currentUserTurn = firstTurn
+        boardRepository.cleanBoard()
     }
 
     private fun determineNextTurn(turn: BoardPoint.State): BoardPoint.State {
