@@ -50,7 +50,7 @@ class GameRulesTest {
     fun `isDraw detects draw`() {
         val givenBoard = """
             o,_,o
-            x,x,o
+            x,o,o
             o,x,x
         """.trimIndent()
         val givenPoint = BoardPoint(row = 0, column = 1, BoardPoint.State.CROSS)

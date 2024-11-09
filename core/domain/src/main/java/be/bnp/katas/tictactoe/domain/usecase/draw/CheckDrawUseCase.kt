@@ -17,7 +17,7 @@ class CheckDrawUseCase(
      */
     override operator fun invoke(point: BoardPoint): Boolean {
         val (row, column) = point
-        boardPoints[column][row] = point
+        boardPoints[row][column] = point
 
         return !boardPoints.flatten().any { it.isEmpty }
     }

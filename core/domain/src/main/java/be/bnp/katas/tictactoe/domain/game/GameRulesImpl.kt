@@ -23,7 +23,7 @@ class GameRulesImpl(
     }
 
     override fun isDraw(point: BoardPoint): Boolean {
-        TODO("Not yet implemented")
+        return drawUseCase(point)
     }
 
     override fun isAllowedToPlacePoint(point: BoardPoint): Boolean {
