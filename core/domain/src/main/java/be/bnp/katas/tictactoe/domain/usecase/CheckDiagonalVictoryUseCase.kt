@@ -4,8 +4,8 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 
 /**
- * Check if the user won for the column
- * If there are 3 in a column, then the user wins
+ * Check if the user won for the diagonal
+ * If there are 3 in a diagonal, then the user wins
  */
 class CheckDiagonalVictoryUseCase(
     boardRepository: BoardRepository,
