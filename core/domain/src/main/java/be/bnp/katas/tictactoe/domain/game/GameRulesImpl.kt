@@ -9,10 +9,12 @@ class GameRulesImpl(
     private val boardRepository: BoardRepository,
     private val victoryCases: List<VictoryUseCase>,
     private val drawUseCase: DrawUseCase,
-    private val initialTurn: BoardPoint.State = BoardPoint.State.CROSS,
+    private val firstTurn: BoardPoint.State = BoardPoint.State.CROSS,
 ) : GameRules {
+
+    private var _currentUserTurn: BoardPoint.State = firstTurn
     override val currentUserTurn: BoardPoint.State
-        get() = initialTurn
+        get() = _currentUserTurn
 
     override fun isUserWins(point: BoardPoint): Boolean {
         return victoryCases.any { case -> case(point) }

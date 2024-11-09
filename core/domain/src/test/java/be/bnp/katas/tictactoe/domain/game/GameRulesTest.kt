@@ -10,6 +10,7 @@ import be.bnp.katas.tictactoe.domain.usecase.victory.CheckRowVictoryUseCase
 import be.bnp.katas.tictactoe.domain.utils.asBoardPoints
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -58,5 +59,22 @@ class GameRulesTest {
         val rules = gameRulesForBoardPoints(givenBoard.asBoardPoints)
 
         assertTrue(rules.isDraw(givenPoint))
+    }
+
+    @Test
+    fun `moveToNextTurn moves the turn to next user`() {
+        val givenBoard = """
+            o,_,o
+            _,x,_
+            _,x,_
+        """.trimIndent()
+        val givenTurn = BoardPoint.State.CROSS
+        val expectedNextTurn = BoardPoint.State.NOUGHT
+
+        val gameRules = gameRulesForBoardPoints(givenBoard.asBoardPoints)
+
+        gameRules.moveToNextTurn(givenTurn)
+
+        assertEquals(expectedNextTurn, gameRules.currentUserTurn)
     }
 }
