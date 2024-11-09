@@ -1,6 +1,7 @@
 package be.bnp.katas.tictactoe.domain.usecase
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
+import be.bnp.katas.tictactoe.data.model.isEmpty
 import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 
 /**
@@ -18,6 +19,6 @@ class CheckDrawUseCase(
         val (row, column) = point
         boardPoints[column][row] = point
 
-        return !boardPoints.any { it.isEmpty() }
+        return !boardPoints.flatten().any { it.isEmpty }
     }
 }

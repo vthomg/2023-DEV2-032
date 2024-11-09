@@ -6,6 +6,7 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepositoryImpl
 import be.bnp.katas.tictactoe.domain.utils.asBoardPoints
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -30,5 +31,19 @@ class CheckDrawUseCaseTest {
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
         assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Draw is not detected when there is space to play left`() {
+        val givenBoard = """
+            x,x,o
+            o,x,_
+            _,o,o
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(useCase(givenPoint))
     }
 }

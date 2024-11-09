@@ -6,6 +6,7 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepositoryImpl
 import be.bnp.katas.tictactoe.domain.utils.asBoardPoints
 import io.mockk.every
 import io.mockk.mockk
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -30,5 +31,47 @@ class CheckColumnVictoryUseCaseTest {
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
         assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Column Victory is detected in the middle`() {
+        val givenBoard = """
+            o,_,x
+            o,x,_
+            _,o,x
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Column Victory is detected with mostly empty`() {
+        val givenBoard = """
+            o,_,o
+            _,x,_
+            _,x,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 0, column = 1, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Column Victory is not detected with opponents state`() {
+        val givenBoard = """
+            o,_,o
+            _,o,_
+            _,x,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 0, column = 1, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(useCase(givenPoint))
     }
 }
