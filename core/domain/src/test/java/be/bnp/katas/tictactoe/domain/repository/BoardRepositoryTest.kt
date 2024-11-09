@@ -75,4 +75,14 @@ class BoardRepositoryTest {
 
         assertFalse(boardRepository.boardPoints.flatten().any { it == givenPoint })
     }
+
+    @Test
+    fun `BoardRepository cleanBoard cleans the board`() {
+        val givenPoint = BoardPoint(0, 0, BoardPoint.State.CROSS)
+
+        boardRepository.updatePoint(givenPoint)
+        boardRepository.cleanBoard()
+
+        assertFalse(boardRepository.boardPoints.flatten().any { it == givenPoint })
+    }
 }
