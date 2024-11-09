@@ -15,7 +15,7 @@ class GameRulesImpl(
         get() = initialTurn
 
     override fun isUserWins(point: BoardPoint): Boolean {
-        TODO("Not yet implemented")
+        return victoryCases.any { case -> case(point) }
     }
 
     override fun moveToNextTurn(lastTurn: BoardPoint.State) {
