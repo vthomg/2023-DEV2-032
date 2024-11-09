@@ -11,6 +11,7 @@ import be.bnp.katas.tictactoe.domain.utils.asBoardPoints
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -76,5 +77,19 @@ class GameRulesTest {
         gameRules.moveToNextTurn(givenTurn)
 
         assertEquals(expectedNextTurn, gameRules.currentUserTurn)
+    }
+
+    @Test
+    fun `isAllowedToPlacePoint returns false if the position is already occupied`() {
+        val givenBoard = """
+            o,_,x
+            x,x,o
+            _,o,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 0, column = 0, BoardPoint.State.CROSS)
+
+        val gameRules = gameRulesForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(gameRules.isAllowedToPlacePoint(givenPoint))
     }
 }
