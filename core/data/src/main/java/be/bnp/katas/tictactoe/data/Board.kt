@@ -9,6 +9,7 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 @JvmInline
 value class Board(private val _points: MutableList<MutableList<BoardPoint>>) {
     val points: List<List<BoardPoint>> get() = _points
+    val size: Int get() = _points.size
 
     fun getPointFor(row: Int, column: Int): BoardPoint {
         return _points[row][column]
