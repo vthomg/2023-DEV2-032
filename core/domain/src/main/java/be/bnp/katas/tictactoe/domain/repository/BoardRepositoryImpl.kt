@@ -18,6 +18,7 @@ class BoardRepositoryImpl(
     override val boardPoints: BoardPoints get() = board.points
 
     override fun updatePoint(point: BoardPoint) {
+        if (!isPointValidForBoard(point)) return
         val (row, column) = point
         board.updatePointFor(row, column, point)
     }
