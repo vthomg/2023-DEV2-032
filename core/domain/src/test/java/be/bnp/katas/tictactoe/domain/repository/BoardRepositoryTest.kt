@@ -58,4 +58,11 @@ class BoardRepositoryTest {
         assertEquals(givenPoint, boardRepository.sheet.getPointFor(row, column))
     }
 
+    @Test
+    fun `BoardRepository correctly checks for the point validity for the board`() {
+        val givenPoint = BoardPoint(5, 0, BoardPoint.State.CROSS)
+
+        assertFalse(boardRepository.isPointValidForBoard(givenPoint))
+    }
+
 }
