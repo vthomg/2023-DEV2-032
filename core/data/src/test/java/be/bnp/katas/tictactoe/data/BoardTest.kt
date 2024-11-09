@@ -6,7 +6,7 @@ import org.junit.Test
 
 class BoardTest {
     @Test
-    fun `getPointFor(x, y) returns the correct point`() {
+    fun `getPointFor(row, column) returns the correct point`() {
         val givenPoint = BoardPoint(0, 1, BoardPoint.State.CROSS)
 
         val givenBoardRepresentation = Board(
