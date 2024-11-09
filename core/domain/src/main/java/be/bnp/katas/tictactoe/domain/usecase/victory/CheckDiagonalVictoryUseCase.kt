@@ -1,4 +1,4 @@
-package be.bnp.katas.tictactoe.domain.usecase
+package be.bnp.katas.tictactoe.domain.usecase.victory
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.domain.repository.BoardRepository
@@ -9,10 +9,10 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
  */
 class CheckDiagonalVictoryUseCase(
     boardRepository: BoardRepository,
-) {
+) : VictoryUseCase {
     private val boardPoints = boardRepository.boardPoints
 
-    operator fun invoke(point: BoardPoint): Boolean {
+    override operator fun invoke(point: BoardPoint): Boolean {
         return isTopLeftToBottomRightVictory(point) || isTopRightToBottomLeftVictory(point)
     }
 

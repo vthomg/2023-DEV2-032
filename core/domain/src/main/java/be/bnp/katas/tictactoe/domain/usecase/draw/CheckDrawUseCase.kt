@@ -1,4 +1,4 @@
-package be.bnp.katas.tictactoe.domain.usecase
+package be.bnp.katas.tictactoe.domain.usecase.draw
 
 import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.model.isEmpty
@@ -9,13 +9,13 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
  */
 class CheckDrawUseCase(
     boardRepository: BoardRepository,
-) {
+) : DrawUseCase {
     private val boardPoints = boardRepository.boardPoints.toMutableList().map { it.toMutableList() }
 
     /**
      * Should be called only after checking for victory
      */
-    operator fun invoke(point: BoardPoint): Boolean {
+    override operator fun invoke(point: BoardPoint): Boolean {
         val (row, column) = point
         boardPoints[column][row] = point
 

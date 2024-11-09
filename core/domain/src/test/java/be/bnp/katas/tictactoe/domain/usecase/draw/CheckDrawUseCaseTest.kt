@@ -1,4 +1,4 @@
-package be.bnp.katas.tictactoe.domain.usecase
+package be.bnp.katas.tictactoe.domain.usecase.draw
 
 import be.bnp.katas.tictactoe.data.BoardPoints
 import be.bnp.katas.tictactoe.data.model.BoardPoint
