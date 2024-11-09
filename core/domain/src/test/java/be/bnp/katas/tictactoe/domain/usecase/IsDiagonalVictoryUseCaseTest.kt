@@ -23,9 +23,23 @@ class IsDiagonalVictoryUseCaseTest {
         val givenBoard = """
             x,_,x
             o,x,o
-            _,o,_
+            o,o,_
         """.trimIndent()
         val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertTrue(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Diagonal top right to bottom left victory is detected`() {
+        val givenBoard = """
+            x,_,x
+            o,x,o
+            _,o,o
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.CROSS)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
