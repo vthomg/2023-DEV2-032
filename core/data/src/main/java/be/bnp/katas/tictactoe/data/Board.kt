@@ -10,6 +10,8 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 value class Board(
     private val _points: MutableList<MutableList<BoardPoint>>,
 ) {
+    constructor(size: Int) : this(createEmptyPointsFor(size))
+
     val points: BoardPoints get() = _points
     val size: Int get() = _points.size
 
@@ -21,17 +23,20 @@ value class Board(
         _points[row][column] = point
     }
 
+    fun clear() {
+        val size = _points.size
+        _points.clear()
+        _points.addAll(createEmptyPointsFor(size))
+    }
+
     companion object {
-        fun createEmptyFor(size: Int): Board {
-            val points = MutableList(size) { row ->
-                MutableList(size) { column ->
-                    BoardPoint.createEmpty(
-                        row = row,
-                        column = column
-                    )
-                }
+        fun createEmptyPointsFor(size: Int) = MutableList(size) { row ->
+            MutableList(size) { column ->
+                BoardPoint.createEmpty(
+                    row = row,
+                    column = column
+                )
             }
-            return Board(points)
         }
     }
 }

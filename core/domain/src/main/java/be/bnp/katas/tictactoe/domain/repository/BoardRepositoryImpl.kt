@@ -13,7 +13,7 @@ class BoardRepositoryImpl(
         private const val DEFAULT_BOARD_SIZE = 3
     }
 
-    private val board: Board = Board.createEmptyFor(boardSize)
+    private val board: Board = Board(boardSize)
 
     override val boardPoints: BoardPoints get() = board.points
 
@@ -31,5 +31,6 @@ class BoardRepositoryImpl(
     }
 
     override fun cleanBoard() {
+        board.clear()
     }
 }
