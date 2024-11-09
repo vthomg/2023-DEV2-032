@@ -10,6 +10,7 @@ import be.bnp.katas.tictactoe.domain.usecase.victory.CheckRowVictoryUseCase
 import be.bnp.katas.tictactoe.domain.utils.asBoardPoints
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -91,5 +92,24 @@ class GameRulesTest {
         val gameRules = gameRulesForBoardPoints(givenBoard.asBoardPoints)
 
         assertFalse(gameRules.isAllowedToPlacePoint(givenPoint))
+    }
+
+    @Test
+    fun `reset() resets the turn and board`() {
+        val givenBoard = """
+            o,_,x
+            x,x,o
+            _,o,_
+        """.trimIndent()
+
+        val repositoryMocked = mockk<BoardRepositoryImpl>(relaxed = true)
+        every { repositoryMocked.boardPoints } returns givenBoard.asBoardPoints
+
+        val gameRules = GameRulesImpl(repositoryMocked, emptyList(), mockk(relaxed = true))
+        gameRules.moveToNextTurn(lastTurn = BoardPoint.State.CROSS)
+        gameRules.reset()
+
+        assertFalse(gameRules.currentUserTurn == BoardPoint.State.NOUGHT)
+        verify(exactly = 1) { repositoryMocked.cleanBoard() }
     }
 }
