@@ -6,7 +6,7 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 value class Board(val points: List<List<BoardPoint>>) {
 
     fun getPointFor(row: Int, column: Int): BoardPoint {
-        throw NotImplementedError()
+        return points[row][column]
     }
 
     companion object {
