@@ -18,7 +18,7 @@ data class BoardPoint(
     }
 
     companion object {
-        fun createEmpty(x: Int, y: Int) = BoardPoint(x, y, State.EMPTY)
+        fun createEmpty(row: Int, column: Int) = BoardPoint(row, column, State.EMPTY)
     }
 }
 
