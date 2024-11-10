@@ -1,6 +1,7 @@
 package be.bnp.katas.tictactoe.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Card
@@ -26,6 +27,7 @@ fun TextualPoint(
     onClick: () -> Unit,
 ) {
     Card(
+        modifier = modifier.aspectRatio(1f),
         colors = CardDefaults.cardColors().copy(containerColor = backgroundColor)
     ) {
         Text(
