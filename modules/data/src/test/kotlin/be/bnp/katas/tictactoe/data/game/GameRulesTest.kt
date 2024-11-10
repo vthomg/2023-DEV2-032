@@ -27,7 +27,7 @@ class GameRulesTest {
                 CheckDiagonalVictoryUseCase(repositoryMocked)
             )
             val drawUseCase = CheckDrawUseCase(repositoryMocked)
-            return GameRulesImpl(
+            return TicTacToeGameRulesImpl(
                 repositoryMocked,
                 victoryUseCases,
                 drawUseCase
@@ -105,7 +105,7 @@ class GameRulesTest {
         val repositoryMocked = mockk<BoardRepositoryImpl>(relaxed = true)
         every { repositoryMocked.boardPoints } returns givenBoard.asBoardPoints
 
-        val gameRules = GameRulesImpl(repositoryMocked, emptyList(), mockk(relaxed = true))
+        val gameRules = TicTacToeGameRulesImpl(repositoryMocked, emptyList(), mockk(relaxed = true))
         gameRules.moveToNextTurn(lastTurn = BoardPoint.State.CROSS)
         gameRules.reset()
 

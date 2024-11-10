@@ -6,7 +6,7 @@ import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.data.usecase.draw.DrawUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.VictoryUseCase
 
-class GameRulesImpl(
+class TicTacToeGameRulesImpl(
     private val boardRepository: BoardRepository,
     private val victoryCases: List<VictoryUseCase>,
     private val drawUseCase: DrawUseCase,
