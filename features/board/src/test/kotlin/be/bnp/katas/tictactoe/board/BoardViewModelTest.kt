@@ -64,4 +64,16 @@ class BoardViewModelTest {
         require(game is BoardViewModel.Game.GameIsHappening)
         assertEquals(expectedTurn, game.turnBy.user)
     }
+
+    @Test
+    fun `Verify viewmodel checks if the point can be placed before changing the turn`() = runTest {
+        val expectedTurn = "X"
+
+        viewModel.pointClicked(0, 1)
+        val game = viewModel.game.value
+
+        assert(game is BoardViewModel.Game.GameIsHappening)
+        require(game is BoardViewModel.Game.GameIsHappening)
+        assertEquals(expectedTurn, game.turnBy.user)
+    }
 }

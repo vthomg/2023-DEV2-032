@@ -7,10 +7,12 @@ import be.bnp.katas.tictactoe.data.model.BoardPoints
 import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.ui.GameState
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class BoardViewModel(
     private val ioDispatcher: CoroutineDispatcher,
@@ -27,17 +29,17 @@ class BoardViewModel(
     val game: StateFlow<Game> = _game.asStateFlow()
 
     fun pointClicked(row: Int, column: Int) {
-        swapUserTurn()
+        viewModelScope.launch(ioDispatcher) {
+            swapUserTurn()
+        }
     }
 
-    private fun swapUserTurn() {
-        viewModelScope.launch(ioDispatcher) {
-            gameRules.moveToNextTurn(gameRules.currentUserTurn)
-            _game.emit(
-                Game.GameIsHappening(
-                    boardRepository.boardPoints,
-                    GameState.MakeATurn(gameRules.currentUserTurn.toString())
-                )
+    private suspend fun swapUserTurn() {
+        gameRules.moveToNextTurn(gameRules.currentUserTurn)
+        withContext(Dispatchers.Default) {
+            _game.value = Game.GameIsHappening(
+                boardRepository.boardPoints,
+                GameState.MakeATurn(gameRules.currentUserTurn.toString())
             )
         }
     }
