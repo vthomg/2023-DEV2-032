@@ -8,12 +8,10 @@ import be.bnp.katas.tictactoe.data.model.BoardPoints
 import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.ui.GameState
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class BoardViewModel(
     private val ioDispatcher: CoroutineDispatcher,
@@ -32,20 +30,42 @@ class BoardViewModel(
     fun pointClicked(row: Int, column: Int) {
         viewModelScope.launch(ioDispatcher) {
             val point = BoardPoint(row, column, gameRules.currentUserTurn)
-            if (!gameRules.isAllowedToPlacePoint(point)) return@launch
-
-            swapUserTurn()
+            return@launch when {
+                handleIllegalPoint(point) -> Unit
+                handleUserWin(point) -> Unit
+                handleDraw(point) -> Unit
+                else -> handleNormalTurn(point)
+            }
         }
     }
 
-    private suspend fun swapUserTurn() {
-        gameRules.moveToNextTurn(gameRules.currentUserTurn)
-        withContext(Dispatchers.Default) {
-            _game.value = Game.GameIsHappening(
-                boardRepository.boardPoints,
-                GameState.MakeATurn(gameRules.currentUserTurn.toString())
-            )
+    private fun handleIllegalPoint(point: BoardPoint): Boolean {
+        return !gameRules.isAllowedToPlacePoint(point)
+    }
+
+    private fun handleUserWin(point: BoardPoint): Boolean {
+        if (gameRules.isUserWins(point)) {
+            _game.value = Game.GameIsOver(GameState.Victory(gameRules.currentUserTurn.toString()))
+            return true
         }
+        return false
+    }
+
+    private fun handleDraw(point: BoardPoint): Boolean {
+        if (gameRules.isDraw(point)) {
+            _game.value = Game.GameIsOver(GameState.Draw)
+            return true
+        }
+        return false
+    }
+
+    private fun handleNormalTurn(point: BoardPoint) {
+        boardRepository.updatePoint(point)
+        gameRules.moveToNextTurn(gameRules.currentUserTurn)
+        _game.value = Game.GameIsHappening(
+            boardRepository.boardPoints,
+            GameState.MakeATurn(gameRules.currentUserTurn.toString())
+        )
     }
 
     sealed interface Game {

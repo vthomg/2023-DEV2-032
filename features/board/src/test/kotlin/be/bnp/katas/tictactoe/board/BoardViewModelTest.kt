@@ -18,6 +18,7 @@ import org.junit.Test
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class BoardViewModelTest {
@@ -75,5 +76,18 @@ class BoardViewModelTest {
         assert(game is BoardViewModel.Game.GameIsHappening)
         require(game is BoardViewModel.Game.GameIsHappening)
         assertEquals(expectedTurn, game.turnBy.user)
+    }
+
+    @Test
+    fun `Verify viewmodel updates the board`() = runTest {
+        val initialGameSetup = viewModel.game.value
+        require(initialGameSetup is BoardViewModel.Game.GameIsHappening)
+        val givenBoard = initialGameSetup.points
+
+        viewModel.pointClicked(0, 1)
+        val actualGameAfterClick = viewModel.game.value
+        require(actualGameAfterClick is BoardViewModel.Game.GameIsHappening)
+
+        assertNotEquals(givenBoard, actualGameAfterClick.points)
     }
 }
