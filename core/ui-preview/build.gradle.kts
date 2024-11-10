@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "be.bnp.katas.tictactoe.ui"
+    namespace = "be.bnp.katas.tictactoe.ui.preview"
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }

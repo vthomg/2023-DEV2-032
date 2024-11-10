@@ -1,4 +1,4 @@
-package be.bnp.katas.tictactoe.ui.tooling
+package be.bnp.katas.tictactoe.ui.preview.tooling
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 
