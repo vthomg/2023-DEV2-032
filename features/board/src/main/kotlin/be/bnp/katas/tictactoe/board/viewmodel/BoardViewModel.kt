@@ -3,6 +3,7 @@ package be.bnp.katas.tictactoe.board.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import be.bnp.katas.tictactoe.data.game.GameRules
+import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.model.BoardPoints
 import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.ui.GameState
@@ -30,6 +31,9 @@ class BoardViewModel(
 
     fun pointClicked(row: Int, column: Int) {
         viewModelScope.launch(ioDispatcher) {
+            val point = BoardPoint(row, column, gameRules.currentUserTurn)
+            if (!gameRules.isAllowedToPlacePoint(point)) return@launch
+
             swapUserTurn()
         }
     }
