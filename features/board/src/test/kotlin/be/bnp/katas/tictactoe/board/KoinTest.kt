@@ -1,4 +1,4 @@
-package be.bnp.katas.tictactoe.core
+package be.bnp.katas.tictactoe.board
 
 import be.bnp.katas.tictactoe.board.di.boardModuleDi
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel

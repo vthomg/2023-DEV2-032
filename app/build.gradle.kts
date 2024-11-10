@@ -15,6 +15,8 @@ android {
 
 dependencies {
     implementation(project(":modules:core"))
+    implementation(project(":modules:data"))
+    implementation(project(":features:board"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -25,10 +27,12 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     testImplementation(libs.junit)
+    testImplementation(libs.testing.koin)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }

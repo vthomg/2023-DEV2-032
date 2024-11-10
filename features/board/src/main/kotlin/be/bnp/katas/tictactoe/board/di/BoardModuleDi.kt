@@ -9,10 +9,16 @@ import be.bnp.katas.tictactoe.data.usecase.draw.CheckDrawUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckColumnVictoryUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckDiagonalVictoryUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckRowVictoryUseCase
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 val boardModuleDi = module {
+    single<CoroutineDispatcher> {
+        Dispatchers.IO
+    }
+
     viewModelOf(::BoardViewModel)
 
     single<BoardRepository> {
