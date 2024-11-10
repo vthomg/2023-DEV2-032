@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.koin.compose)
+    api(libs.koin.compose)
+
     testImplementation(libs.testing.koin)
 }
