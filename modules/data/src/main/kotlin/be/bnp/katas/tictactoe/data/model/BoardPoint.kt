@@ -8,9 +8,15 @@ data class BoardPoint(
     val state: State,
 ) {
     enum class State {
-        CROSS,
-        NOUGHT,
-        EMPTY,
+        CROSS {
+            override fun toString(): String = "X"
+        },
+        NOUGHT {
+            override fun toString(): String = "O"
+        },
+        EMPTY {
+            override fun toString(): String = ""
+        }
     }
 
     companion object {

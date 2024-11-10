@@ -1,6 +1,6 @@
 package be.bnp.katas.tictactoe.board.di
 
-import be.bnp.katas.tictactoe.board.view.BoardViewModel
+import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
 import be.bnp.katas.tictactoe.data.game.GameRules
 import be.bnp.katas.tictactoe.data.game.TicTacToeGameRulesImpl
 import be.bnp.katas.tictactoe.data.repository.BoardRepository

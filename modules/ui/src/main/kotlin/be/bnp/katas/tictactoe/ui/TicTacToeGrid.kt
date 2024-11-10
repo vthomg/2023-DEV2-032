@@ -10,14 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-data class TicTacToeGridItemData(
-    val pointState: PointState,
-) {
-    enum class PointState {
-        Cross,
-        Nought,
-        Empty,
-    }
+enum class TicTacToePointState {
+    Cross,
+    Nought,
+    Empty,
 }
 
 object TicTacToeGridDefaults {
@@ -27,7 +23,7 @@ object TicTacToeGridDefaults {
 
 @Composable
 fun TicTacToeGrid(
-    gridItems: List<List<TicTacToeGridItemData>>,
+    gridItems: List<List<TicTacToePointState>>,
     onClick: (row: Int, column: Int) -> Unit,
     modifier: Modifier = Modifier,
     verticalSpacing: Dp = TicTacToeGridDefaults.verticalSpacing,
@@ -39,8 +35,8 @@ fun TicTacToeGrid(
         verticalArrangement = Arrangement.spacedBy(verticalSpacing),
         horizontalArrangement = Arrangement.spacedBy(horizontalSpacing),
     ) {
-        itemsIndexed(gridItems.flatten()) { index, item ->
-            TicTacToeGridItem(item.pointState) {
+        itemsIndexed(gridItems.flatten()) { index, pointState ->
+            TicTacToeGridItem(pointState) {
                 val row = (index % gridItems.size - 1).takeIf { it >= 0 } ?: (gridItems.size - 1)
                 val column = (index / gridItems.size)
                 onClick(row, column)
@@ -50,23 +46,23 @@ fun TicTacToeGrid(
 }
 
 @Composable
-private fun TicTacToeGridItem(pointState: TicTacToeGridItemData.PointState, onClick: () -> Unit) {
+private fun TicTacToeGridItem(pointState: TicTacToePointState, onClick: () -> Unit) {
     when (pointState) {
-        TicTacToeGridItemData.PointState.Cross -> TextualPoint(
+        TicTacToePointState.Cross -> TextualPoint(
             "X",
             backgroundColor = Color.Magenta,
             color = Color.White,
             onClick = onClick
         )
 
-        TicTacToeGridItemData.PointState.Nought -> TextualPoint(
+        TicTacToePointState.Nought -> TextualPoint(
             "O",
             backgroundColor = Color.Cyan,
             color = Color.White,
             onClick = onClick
         )
 
-        TicTacToeGridItemData.PointState.Empty -> TextualPoint(
+        TicTacToePointState.Empty -> TextualPoint(
             "",
             backgroundColor = Color.White,
             onClick = onClick

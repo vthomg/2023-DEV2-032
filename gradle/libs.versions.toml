@@ -5,6 +5,7 @@ android-targetSdk = "35"
 
 agp = "8.7.2"
 kotlin = "2.0.21"
+kotlinCoroutineTesting = "1.9.0"
 coreKtx = "1.15.0"
 koin = "4.0.0"
 junit = "4.13.2"
@@ -48,6 +49,7 @@ testing-mockito = { group = "org.mockito", name = "mockito-core", version.ref = 
 testing-mockk = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 testing-androidx-core = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidxCoreTesting" }
 testing-koin = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin" }
+testing-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinCoroutineTesting" }
 material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
 
 [plugins]

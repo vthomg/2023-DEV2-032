@@ -3,28 +3,28 @@ package be.bnp.katas.tictactoe.ui.preview
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import be.bnp.katas.tictactoe.ui.TicTacToeGrid
-import be.bnp.katas.tictactoe.ui.TicTacToeGridItemData
+import be.bnp.katas.tictactoe.ui.TicTacToePointState
 
 private val previewBoard = listOf(
     listOf(
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Empty),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Cross),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Cross),
+        TicTacToePointState.Empty,
+        TicTacToePointState.Cross,
+        TicTacToePointState.Cross,
     ),
     listOf(
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Nought),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Nought),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Empty),
+        TicTacToePointState.Nought,
+        TicTacToePointState.Nought,
+        TicTacToePointState.Empty,
     ),
     listOf(
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Nought),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Empty),
-        TicTacToeGridItemData(TicTacToeGridItemData.PointState.Empty),
+        TicTacToePointState.Nought,
+        TicTacToePointState.Empty,
+        TicTacToePointState.Empty,
     )
 )
 
 @Composable
 @Preview(showSystemUi = true)
-fun TicTacToeGridPreview(gridItems: List<List<TicTacToeGridItemData>> = previewBoard) {
+fun TicTacToeGridPreview(gridItems: List<List<TicTacToePointState>> = previewBoard) {
     TicTacToeGrid(gridItems, onClick = { _, _ -> })
 }
