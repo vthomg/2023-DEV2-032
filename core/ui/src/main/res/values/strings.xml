@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="draw">It\'s a draw</string>
+    <string name="victory">%1$s, you won!</string>
+    <string name="make_a_turn">%1$s, make a turn!</string>
+</resources>
