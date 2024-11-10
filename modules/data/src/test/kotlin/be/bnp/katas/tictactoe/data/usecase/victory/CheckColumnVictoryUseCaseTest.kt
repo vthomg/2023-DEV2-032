@@ -62,6 +62,20 @@ class CheckColumnVictoryUseCaseTest {
     }
 
     @Test
+    fun `Column Victory is not detected with all empty`() {
+        val givenBoard = """
+            _,_,_
+            _,_,_
+            _,_,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.CROSS)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(useCase(givenPoint))
+    }
+
+    @Test
     fun `Column Victory is not detected with opponents state`() {
         val givenBoard = """
             o,_,o
