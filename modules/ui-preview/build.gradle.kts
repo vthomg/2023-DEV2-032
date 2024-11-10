@@ -13,7 +13,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
+    implementation(project(":modules:ui"))
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
