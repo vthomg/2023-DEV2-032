@@ -27,15 +27,16 @@ fun TextualPoint(
     onClick: () -> Unit,
 ) {
     Card(
-        modifier = modifier.aspectRatio(1f),
+        modifier = modifier
+            .aspectRatio(1f)
+            .clickable(onClick = onClick),
         colors = CardDefaults.cardColors().copy(containerColor = backgroundColor)
     ) {
         Text(
             text,
             modifier = modifier
                 .fillMaxSize()
-                .wrapContentHeight()
-                .clickable(onClick = onClick),
+                .wrapContentHeight(),
             color = color,
             fontSize = 24.sp,
             textAlign = TextAlign.Center,

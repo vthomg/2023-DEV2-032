@@ -1,6 +1,7 @@
 package be.bnp.katas.tictactoe
 
 import android.app.Application
+import be.bnp.katas.tictactoe.board.di.boardModuleDi
 import be.bnp.katas.tictactoe.core.coreModuleDi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -22,7 +23,8 @@ private class AppInitKoinDelegateImpl : AppInitKoinDelegate {
             androidLogger()
             androidContext(this@initKoinDelegated)
             modules(
-                coreModuleDi
+                coreModuleDi,
+                boardModuleDi
             )
         }
     }

@@ -6,7 +6,7 @@ import be.bnp.katas.tictactoe.data.model.BoardPoints
 import be.bnp.katas.tictactoe.data.model.isEmpty
 
 class BoardRepositoryImpl(
-    boardSize: Int = DEFAULT_BOARD_SIZE,
+    override val boardSize: Int = DEFAULT_BOARD_SIZE,
 ) : BoardRepository {
 
     companion object {

@@ -2,33 +2,39 @@ package be.bnp.katas.tictactoe.board.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import be.bnp.katas.tictactoe.board.mapper.asTicTacToeGridItemData
 import be.bnp.katas.tictactoe.data.game.GameRules
 import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.model.BoardPoints
 import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.ui.GameState
+import be.bnp.katas.tictactoe.ui.TicTacToeGridItemData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+internal fun interface PointClick {
+    fun pointClicked(row: Int, column: Int)
+}
+
 class BoardViewModel(
-    private val ioDispatcher: CoroutineDispatcher,
+    private val dispatcher: CoroutineDispatcher,
     private val boardRepository: BoardRepository,
     private val gameRules: GameRules,
-) : ViewModel() {
+) : ViewModel(), PointClick {
 
     private val _game = MutableStateFlow<Game>(
         Game.GameIsHappening(
-            points = boardRepository.boardPoints,
+            points = boardRepository.boardPoints.asTicTacToeGridItemData,
+            dimension = boardRepository.boardSize,
             turnBy = GameState.MakeATurn(gameRules.currentUserTurn.toString())
         )
     )
     val game: StateFlow<Game> = _game.asStateFlow()
 
-    fun pointClicked(row: Int, column: Int) {
-        viewModelScope.launch(ioDispatcher) {
+    override fun pointClicked(row: Int, column: Int) {
+        viewModelScope.launch(dispatcher) {
             val point = BoardPoint(row, column, gameRules.currentUserTurn)
             return@launch when {
                 handleIllegalPoint(point) -> Unit
@@ -63,14 +69,16 @@ class BoardViewModel(
         boardRepository.updatePoint(point)
         gameRules.moveToNextTurn(gameRules.currentUserTurn)
         _game.value = Game.GameIsHappening(
-            boardRepository.boardPoints,
-            GameState.MakeATurn(gameRules.currentUserTurn.toString())
+            points = boardRepository.boardPoints.asTicTacToeGridItemData,
+            dimension = boardRepository.boardSize,
+            turnBy = GameState.MakeATurn(gameRules.currentUserTurn.toString())
         )
     }
 
     sealed interface Game {
         data class GameIsHappening(
-            val points: BoardPoints,
+            val points: List<TicTacToeGridItemData>,
+            val dimension: Int,
             val turnBy: GameState.MakeATurn,
         ) : Game
 

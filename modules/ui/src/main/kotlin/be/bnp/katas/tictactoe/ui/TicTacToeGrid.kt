@@ -3,12 +3,18 @@ package be.bnp.katas.tictactoe.ui
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+data class TicTacToeGridItemData(
+    val row: Int,
+    val column: Int,
+    val state: TicTacToePointState,
+)
 
 enum class TicTacToePointState {
     Cross,
@@ -23,7 +29,8 @@ object TicTacToeGridDefaults {
 
 @Composable
 fun TicTacToeGrid(
-    gridItems: List<List<TicTacToePointState>>,
+    gridItems: List<TicTacToeGridItemData>,
+    boardSize: Int,
     onClick: (row: Int, column: Int) -> Unit,
     modifier: Modifier = Modifier,
     verticalSpacing: Dp = TicTacToeGridDefaults.verticalSpacing,
@@ -31,15 +38,13 @@ fun TicTacToeGrid(
 ) {
     LazyVerticalGrid(
         modifier = modifier,
-        columns = GridCells.Fixed(gridItems.size),
+        columns = GridCells.Fixed(boardSize),
         verticalArrangement = Arrangement.spacedBy(verticalSpacing),
         horizontalArrangement = Arrangement.spacedBy(horizontalSpacing),
     ) {
-        itemsIndexed(gridItems.flatten()) { index, pointState ->
-            TicTacToeGridItem(pointState) {
-                val row = (index % gridItems.size - 1).takeIf { it >= 0 } ?: (gridItems.size - 1)
-                val column = (index / gridItems.size)
-                onClick(row, column)
+        items(gridItems) { point ->
+            TicTacToeGridItem(point.state) {
+                onClick(point.row, point.column)
             }
         }
     }

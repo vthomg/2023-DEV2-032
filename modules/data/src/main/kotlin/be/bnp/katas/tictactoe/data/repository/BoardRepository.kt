@@ -4,6 +4,8 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.model.BoardPoints
 
 interface BoardRepository {
+    val boardSize: Int
+
     val boardPoints: BoardPoints
 
     fun updatePoint(point: BoardPoint)
