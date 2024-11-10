@@ -10,15 +10,16 @@ import be.bnp.katas.tictactoe.data.repository.BoardRepository
 class CheckColumnVictoryUseCase(
     boardRepository: BoardRepository,
 ) : VictoryUseCase {
-    private val boardPoints = boardRepository.boardPoints
+    private val boardPoints = boardRepository.boardPoints.toMutableList().map { it.toMutableList() }
 
     override operator fun invoke(point: BoardPoint): Boolean {
-        val (_, column) = point
+        val (row, column) = point
+        boardPoints[row][column] = point
 
         for (rowIndex in boardPoints.indices) {
             val pointOnBoard = boardPoints[rowIndex][column]
             // Quit the loop, user did not won already since there is already different point
-            if (pointOnBoard.state != BoardPoint.State.EMPTY && pointOnBoard.state != point.state) break
+            if (pointOnBoard.state != point.state) break
             // If iteration went till the last element with no breaks, user won
             else if (rowIndex == boardPoints.size - 1) return true
         }
