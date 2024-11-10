@@ -23,6 +23,5 @@ dependencyResolutionManagement {
 rootProject.name = "TicTacToe"
 include(":app")
 include(":core:data")
-include(":core:domain")
 include(":core:ui")
 include(":core:ui-preview")
