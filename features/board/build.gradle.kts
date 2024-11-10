@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(project(":modules:core"))
+    implementation(project(":modules:data"))
     api(libs.koin.compose)
 
     testImplementation(libs.testing.koin)

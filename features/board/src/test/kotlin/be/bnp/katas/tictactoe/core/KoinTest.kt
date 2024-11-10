@@ -2,6 +2,7 @@ package be.bnp.katas.tictactoe.core
 
 import be.bnp.katas.tictactoe.board.di.boardModuleDi
 import be.bnp.katas.tictactoe.board.view.BoardViewModel
+import be.bnp.katas.tictactoe.data.game.GameRules
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
@@ -28,5 +29,10 @@ class BoardModuleDiTest : AutoCloseKoinTest() {
     @Test
     fun `Verify BoardViewModel is declared`() {
         assertNotNull(get<BoardViewModel>())
+    }
+
+    @Test
+    fun `Verify GameRules is declared`() {
+        assertNotNull(get<GameRules>())
     }
 }
