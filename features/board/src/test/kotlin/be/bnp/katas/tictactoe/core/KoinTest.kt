@@ -17,7 +17,7 @@ class BoardModuleDiTest : AutoCloseKoinTest() {
     @get:Rule
     val koinTestRule = KoinTestRule.create {
         printLogger(Level.ERROR)
-        modules(coreModuleDi, boardModuleDi)
+        modules(boardModuleDi)
     }
 
     @Test

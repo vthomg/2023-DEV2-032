@@ -1,8 +1,6 @@
 package be.bnp.katas.tictactoe.board.view
 
-import kotlinx.coroutines.CoroutineDispatcher
+import androidx.lifecycle.ViewModel
 
-class BoardViewModel(
-    private val ioDispatcher: CoroutineDispatcher,
-) {
+class BoardViewModel : ViewModel() {
 }
