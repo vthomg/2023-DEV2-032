@@ -4,6 +4,8 @@ import be.bnp.katas.tictactoe.data.model.BoardPoint
 import be.bnp.katas.tictactoe.data.repository.BoardRepository
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Test
@@ -30,7 +32,7 @@ class MakeAMoveUseCaseTest {
     fun `Make a move updates the point on the board`() {
         val givenPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.CROSS)
 
-        makeAMoveUseCase(givenPoint)
+        assertTrue(makeAMoveUseCase(givenPoint))
 
         val (row, column) = givenPoint
         assertEquals(givenPoint, boardRepository.boardPoints[row][column])
@@ -40,9 +42,6 @@ class MakeAMoveUseCaseTest {
     fun `Make a move does not updates the invalid point on the board`() {
         val givenPoint = BoardPoint(row = 1, column = 10, BoardPoint.State.CROSS)
 
-        makeAMoveUseCase(givenPoint)
-
-        val (row, column) = givenPoint
-        assertEquals(givenPoint, boardRepository.boardPoints[row][column])
+        assertFalse(makeAMoveUseCase(givenPoint))
     }
 }
