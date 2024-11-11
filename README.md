@@ -1,4 +1,5 @@
 # MyExercise, 2023-DEV2-032
+> Tic-Tac-Kata Time: build better code with every move!
 
 This is a test exercise implemented by 2023-DEV2-032 for Tic Tac Toe
 
@@ -35,6 +36,19 @@ You can debug the application by pressing the debug button top right. It will bu
 
 Tip: use [Flipper](https://github.com/facebook/flipper) to inspect layouts, network calls, shared preferences and databases.
 
+## Screenshot testing
+> Because you never know when a rogue pixel might try to start its own reality show!
+
+Validate screenshots.
+```sh
+./gradlew validateDebugScreenshotTest
+```
+
+Update screenshots.
+```sh
+./gradlew updateDebugScreenshotTest
+```
+
 ## Concepts used
 
 * [MVVM](https://proandroiddev.com/understanding-mvvm-pattern-for-android-in-2021-98b155b37b54)
@@ -48,6 +62,7 @@ Tip: use [Flipper](https://github.com/facebook/flipper) to inspect layouts, netw
 * Asynchronous or non-blocking programming: [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 * Testing: [JUnit4](https://developer.android.com/training/testing/junit-rules)
 * Logging: [Timber](https://github.com/JakeWharton/timber)
+* Screenshot testing: [Compose Preview Screenshot Testing](https://developer.android.com/studio/preview/compose-screenshot-testing)
 
 ## Useful resources and references
 
