@@ -37,7 +37,7 @@ class CheckDiagonalVictoryUseCase(
             // Quit the loop, user did not won already since there is already different point
             if (pointOnBoard.state != point.state) break
             // If iteration went till the last element with no breaks, user won
-            else if (diagonalIndex == boardPoints.size - 1) return true
+            else if (diagonalIndex == 0) return true
         }
         return false
     }
