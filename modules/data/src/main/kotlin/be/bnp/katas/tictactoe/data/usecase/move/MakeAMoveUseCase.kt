@@ -7,5 +7,6 @@ class MakeAMoveUseCase(
     private val boardRepository: BoardRepository,
 ) {
     operator fun invoke(point: BoardPoint) {
+        boardRepository.updatePoint(point)
     }
 }
