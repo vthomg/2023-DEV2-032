@@ -12,6 +12,7 @@ interface BoardRepository {
 
     /**
      * Normally this method should never return [false] unless there is a fault somewhere in the UI
+     * Because that means that you let the user click on the point which is not valid for the board
      */
     fun isPointValidForBoard(point: BoardPoint): Boolean
 

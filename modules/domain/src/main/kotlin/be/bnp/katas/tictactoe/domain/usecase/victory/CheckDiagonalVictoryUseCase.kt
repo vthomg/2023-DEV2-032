@@ -5,7 +5,7 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 
 /**
  * Check if the user won for the diagonal
- * If there are 3 in a diagonal, then the user wins
+ * If there are 3 same turn points in a diagonal, then we have a winner
  */
 class CheckDiagonalVictoryUseCase(
     boardRepository: BoardRepository,

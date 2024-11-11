@@ -2,7 +2,7 @@ package be.bnp.katas.tictactoe.domain.model
 
 /**
  * 2D representation of the board.
- * The main purpose is to hold the points and serve operations on them
+ * If one day we support 3D experience, rename it to 2D, please
  */
 @JvmInline
 value class Board(

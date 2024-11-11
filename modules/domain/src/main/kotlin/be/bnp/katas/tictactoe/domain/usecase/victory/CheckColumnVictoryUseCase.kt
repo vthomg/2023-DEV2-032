@@ -5,7 +5,7 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 
 /**
  * Check if the user won for the column
- * If there are 3 in a column, then the user wins
+ * If there are 3 same turn points in a column, then we have a winner
  */
 class CheckColumnVictoryUseCase(
     boardRepository: BoardRepository,

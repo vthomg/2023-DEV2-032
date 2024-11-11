@@ -50,33 +50,27 @@ class BoardViewTest {
 
     @Test
     fun empty_board_is_shown() {
-        // Start the composable under test
         composeTestRule.setContent {
             BoardView(Modifier, createViewModel())
         }
 
-        // Verify initial text is displayed
         composeTestRule.onNodeWithTag(TestTags.GameStateText).assertExists()
 
-        // The board is shown
         composeTestRule.onNodeWithTag(TestTags.GameStateText).assertExists()
     }
 
     @Test
     fun point_is_changed_after_click() {
-        // Start the composable under test
         composeTestRule.setContent {
             BoardView(Modifier, createViewModel())
         }
 
-        // Verify initial text is displayed
         composeTestRule.onAllNodesWithTag(TestTags.TicTacToeGridItem)
             .onFirst()
             .performClick()
 
         composeTestRule.waitForIdle()
 
-        // The board is shown
         composeTestRule.onAllNodesWithTag(TestTags.TicTacToeGridItem)
             .onFirst()
             .assertTextEquals(Player.Cross.toString())
@@ -84,7 +78,6 @@ class BoardViewTest {
 
     @Test
     fun turn_is_changed_after_click() {
-        // Start the composable under test
         composeTestRule.setContent {
             BoardView(Modifier, createViewModel())
         }
@@ -92,14 +85,12 @@ class BoardViewTest {
         composeTestRule.onNodeWithTag(TestTags.GameStateText)
             .assertTextContains(Player.Cross.toString(), substring = true)
 
-        // Verify initial text is displayed
         composeTestRule.onAllNodesWithTag(TestTags.TicTacToeGridItem)
             .onLast()
             .performClick()
 
         composeTestRule.waitForIdle()
 
-        // The board is shown
         composeTestRule.onNodeWithTag(TestTags.GameStateText)
             .assertTextContains(Player.Nought.toString(), substring = true)
     }

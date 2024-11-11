@@ -61,7 +61,7 @@ Update screenshots.
 * Dependency Injection: [Koin](https://insert-koin.io/)
 * Asynchronous or non-blocking programming: [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 * Testing: [JUnit4](https://developer.android.com/training/testing/junit-rules)
-* Logging: [Timber](https://github.com/JakeWharton/timber)
+* Coroutines testing: [Turbine](https://github.com/cashapp/turbine)
 * Screenshot testing: [Compose Preview Screenshot Testing](https://developer.android.com/studio/preview/compose-screenshot-testing)
 
 ## Useful resources and references
@@ -71,3 +71,4 @@ Update screenshots.
 * [Build local unit tests](https://developer.android.com/training/testing/local-tests)
 * [Android testing](https://developer.android.com/training/testing)
 * [How to perform testing](https://en.paradigmadigital.com/dev/android-testing-how-to-perform-unit-tests/)
+* [Coroutines testing](https://developer.android.com/kotlin/flow/test)
