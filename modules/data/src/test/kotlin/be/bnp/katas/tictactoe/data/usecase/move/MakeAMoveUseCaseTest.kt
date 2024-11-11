@@ -27,8 +27,18 @@ class MakeAMoveUseCaseTest {
     }
 
     @Test
-    fun `BoardRepository updates the point on the board`() {
+    fun `Make a move updates the point on the board`() {
         val givenPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.CROSS)
+
+        makeAMoveUseCase(givenPoint)
+
+        val (row, column) = givenPoint
+        assertEquals(givenPoint, boardRepository.boardPoints[row][column])
+    }
+
+    @Test
+    fun `Make a move does not updates the invalid point on the board`() {
+        val givenPoint = BoardPoint(row = 1, column = 10, BoardPoint.State.CROSS)
 
         makeAMoveUseCase(givenPoint)
 
