@@ -6,5 +6,6 @@ class ResetTheBoardUseCase(
     private val boardRepository: BoardRepository,
 ) {
     operator fun invoke() {
+        boardRepository.cleanBoard()
     }
 }
