@@ -1,7 +1,7 @@
 package be.bnp.katas.tictactoe.board.mapper
 
-import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.model.BoardPoints
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.model.BoardPoints
 import be.bnp.katas.tictactoe.ui.TicTacToeGridItemData
 import be.bnp.katas.tictactoe.ui.TicTacToePointState
 

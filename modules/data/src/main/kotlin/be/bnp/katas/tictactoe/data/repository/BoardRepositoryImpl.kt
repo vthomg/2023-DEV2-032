@@ -1,9 +1,10 @@
 package be.bnp.katas.tictactoe.data.repository
 
-import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.model.Board
-import be.bnp.katas.tictactoe.data.model.BoardPoints
-import be.bnp.katas.tictactoe.data.model.isEmpty
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.model.Board
+import be.bnp.katas.tictactoe.domain.model.BoardPoints
+import be.bnp.katas.tictactoe.domain.model.isEmpty
+import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 
 class BoardRepositoryImpl(
     override val boardSize: Int = DEFAULT_BOARD_SIZE,

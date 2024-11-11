@@ -1,8 +1,9 @@
 package be.bnp.katas.tictactoe.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.model.isEmpty
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.model.isEmpty
+import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.BeforeClass

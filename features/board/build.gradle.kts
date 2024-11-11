@@ -14,7 +14,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":modules:core"))
+    implementation(project(":modules:domain"))
     implementation(project(":modules:data"))
     implementation(project(":modules:ui"))
 

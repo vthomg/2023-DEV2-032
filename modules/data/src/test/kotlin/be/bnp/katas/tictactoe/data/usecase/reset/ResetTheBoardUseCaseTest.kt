@@ -1,11 +1,10 @@
 package be.bnp.katas.tictactoe.data.usecase.reset
 
-import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.repository.BoardRepository
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
-import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCase
-import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCaseTest
-import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCaseTest.Companion
+import be.bnp.katas.tictactoe.domain.usecase.move.MakeAMoveUseCase
+import be.bnp.katas.tictactoe.domain.usecase.reset.ResetTheBoardUseCase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before

@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":modules:domain"))
     testImplementation(libs.junit)
     testImplementation(libs.testing.mockito)
     testImplementation(libs.testing.mockk)

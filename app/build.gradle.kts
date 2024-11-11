@@ -14,11 +14,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":modules:core"))
+    implementation(project(":modules:domain"))
     implementation(project(":modules:data"))
     implementation(project(":features:board"))
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.koin.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.compose.bom))

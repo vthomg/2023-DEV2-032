@@ -2,11 +2,11 @@ package be.bnp.katas.tictactoe.board
 
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
-import be.bnp.katas.tictactoe.data.usecase.draw.CheckDrawUseCase
-import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCase
-import be.bnp.katas.tictactoe.data.usecase.victory.CheckColumnVictoryUseCase
-import be.bnp.katas.tictactoe.data.usecase.victory.CheckDiagonalVictoryUseCase
-import be.bnp.katas.tictactoe.data.usecase.victory.CheckRowVictoryUseCase
+import be.bnp.katas.tictactoe.domain.usecase.draw.CheckDrawUseCase
+import be.bnp.katas.tictactoe.domain.usecase.move.MakeAMoveUseCase
+import be.bnp.katas.tictactoe.domain.usecase.victory.CheckColumnVictoryUseCase
+import be.bnp.katas.tictactoe.domain.usecase.victory.CheckDiagonalVictoryUseCase
+import be.bnp.katas.tictactoe.domain.usecase.victory.CheckRowVictoryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher

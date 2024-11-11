@@ -3,11 +3,11 @@ package be.bnp.katas.tictactoe.board.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import be.bnp.katas.tictactoe.board.mapper.asTicTacToeGridItemData
-import be.bnp.katas.tictactoe.data.model.BoardPoint
-import be.bnp.katas.tictactoe.data.repository.BoardRepository
-import be.bnp.katas.tictactoe.data.usecase.draw.DrawUseCase
-import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCase
-import be.bnp.katas.tictactoe.data.usecase.victory.VictoryUseCase
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.repository.BoardRepository
+import be.bnp.katas.tictactoe.domain.usecase.draw.DrawUseCase
+import be.bnp.katas.tictactoe.domain.usecase.move.MakeAMoveUseCase
+import be.bnp.katas.tictactoe.domain.usecase.victory.VictoryUseCase
 import be.bnp.katas.tictactoe.ui.GameState
 import be.bnp.katas.tictactoe.ui.TicTacToeGridItemData
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,8 +26,11 @@ class BoardViewModel(
     private val victoryUseCases: List<VictoryUseCase>,
     private val drawUseCase: DrawUseCase,
     private val makeAMoveUseCase: MakeAMoveUseCase,
-    firstTurn: BoardPoint.State = BoardPoint.State.CROSS,
 ) : ViewModel(), PointClick {
+
+    private companion object {
+        val firstTurn = BoardPoint.State.CROSS
+    }
 
     private val _game = MutableStateFlow<Game>(
         Game.GameIsHappening(
