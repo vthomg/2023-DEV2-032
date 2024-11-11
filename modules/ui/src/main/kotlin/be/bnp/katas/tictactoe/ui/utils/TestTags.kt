@@ -5,7 +5,8 @@ import androidx.compose.ui.platform.testTag
 
 enum class TestTags {
     GameStateText,
-    TicTacToeGrid
+    TicTacToeGrid,
+    TicTacToeGridItem
 }
 
 internal fun Modifier.testTag(tag: TestTags) = testTag(tag.toString())

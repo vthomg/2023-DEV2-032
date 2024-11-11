@@ -34,7 +34,7 @@ fun TicTacToeGrid(
         horizontalArrangement = Arrangement.spacedBy(horizontalSpacing),
     ) {
         items(gridItems) { point ->
-            TicTacToeGridItem(point.state) {
+            TicTacToeGridItem(Modifier.testTag(TestTags.TicTacToeGridItem), point.state) {
                 onClick(point.row, point.column)
             }
         }
@@ -42,10 +42,15 @@ fun TicTacToeGrid(
 }
 
 @Composable
-private fun TicTacToeGridItem(pointState: BoardPoint.State, onClick: () -> Unit) {
+private fun TicTacToeGridItem(
+    modifier: Modifier,
+    pointState: BoardPoint.State,
+    onClick: () -> Unit,
+) {
     when (pointState) {
         BoardPoint.State.Cross -> TextualPoint(
             "X",
+            modifier = modifier,
             backgroundColor = Color.Magenta,
             color = Color.White,
             onClick = onClick
@@ -53,6 +58,7 @@ private fun TicTacToeGridItem(pointState: BoardPoint.State, onClick: () -> Unit)
 
         BoardPoint.State.Nought -> TextualPoint(
             "O",
+            modifier = modifier,
             backgroundColor = Color.Cyan,
             color = Color.White,
             onClick = onClick
@@ -60,6 +66,7 @@ private fun TicTacToeGridItem(pointState: BoardPoint.State, onClick: () -> Unit)
 
         BoardPoint.State.Empty -> TextualPoint(
             "",
+            modifier = modifier,
             backgroundColor = Color.White,
             onClick = onClick
         )

@@ -1,8 +1,13 @@
 package be.bnp.katas.tictactoe.board
 
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import be.bnp.katas.tictactoe.board.utils.onAllNodesWithTag
 import be.bnp.katas.tictactoe.board.utils.onNodeWithTag
 import be.bnp.katas.tictactoe.board.view.BoardView
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
@@ -57,5 +62,19 @@ class BoardViewTest {
 
         // The board is shown
         composeTestRule.onNodeWithTag(TestTags.GameStateText).assertExists()
+    }
+
+    @Test
+    fun point_is_changed_after_click() {
+        // Start the composable under test
+        composeTestRule.setContent {
+            BoardView(Modifier, viewModel)
+        }
+
+        // Verify initial text is displayed
+        composeTestRule.onAllNodesWithTag(TestTags.TicTacToeGridItem).onFirst().performClick()
+
+        // The board is shown
+        composeTestRule.onAllNodesWithTag(TestTags.TicTacToeGridItem).onFirst().assertTextEquals("X")
     }
 }
