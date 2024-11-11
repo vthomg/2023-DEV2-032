@@ -27,7 +27,7 @@ value class Board(
         _points.addAll(createEmptyPointsFor(size))
     }
 
-    companion object {
+    private companion object {
         fun createEmptyPointsFor(size: Int) = MutableList(size) { row ->
             MutableList(size) { column ->
                 BoardPoint.createEmpty(

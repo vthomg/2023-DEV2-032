@@ -9,13 +9,10 @@ import be.bnp.katas.tictactoe.domain.repository.BoardRepository
  */
 class CheckDrawUseCase(
     boardRepository: BoardRepository,
-) : DrawUseCase {
+) {
     private val boardPoints = boardRepository.boardPoints.toMutableList().map { it.toMutableList() }
 
-    /**
-     * Should be called only after checking for victory
-     */
-    override operator fun invoke(point: BoardPoint): Boolean {
+    operator fun invoke(point: BoardPoint): Boolean {
         val (row, column) = point
         boardPoints[row][column] = point
 

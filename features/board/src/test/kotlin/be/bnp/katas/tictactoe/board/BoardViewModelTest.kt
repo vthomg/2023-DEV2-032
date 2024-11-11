@@ -2,6 +2,7 @@ package be.bnp.katas.tictactoe.board
 
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
+import be.bnp.katas.tictactoe.domain.model.Player
 import be.bnp.katas.tictactoe.domain.usecase.draw.CheckDrawUseCase
 import be.bnp.katas.tictactoe.domain.usecase.move.MakeAMoveUseCase
 import be.bnp.katas.tictactoe.domain.usecase.victory.CheckColumnVictoryUseCase
@@ -58,26 +59,26 @@ class BoardViewModelTest {
 
     @Test
     fun `Verify turn change is dispatched after placing point`() = runTest {
-        val expectedTurn = "O"
+        val expectedTurn = Player.Nought
 
         viewModel.pointClicked(0, 1)
         val game = viewModel.game.value
 
         assert(game is BoardViewModel.Game.GameIsHappening)
         require(game is BoardViewModel.Game.GameIsHappening)
-        assertEquals(expectedTurn, game.turnBy.user)
+        assertEquals(expectedTurn, game.turnBy.player)
     }
 
     @Test
     fun `Verify viewmodel checks if the point can be placed before changing the turn`() = runTest {
-        val expectedTurn = "X"
+        val expectedTurn = Player.Cross
 
         viewModel.pointClicked(0, 1)
         val game = viewModel.game.value
 
         assert(game is BoardViewModel.Game.GameIsHappening)
         require(game is BoardViewModel.Game.GameIsHappening)
-        assertEquals(expectedTurn, game.turnBy.user)
+        assertEquals(expectedTurn, game.turnBy.player)
     }
 
     @Test

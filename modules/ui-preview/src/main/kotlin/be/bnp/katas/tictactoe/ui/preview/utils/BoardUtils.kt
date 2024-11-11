@@ -1,7 +1,7 @@
 package be.bnp.katas.tictactoe.ui.preview.utils
 
-import be.bnp.katas.tictactoe.ui.TicTacToeGridItemData
-import be.bnp.katas.tictactoe.ui.TicTacToePointState
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.domain.model.BoardPoints
 
 /**
  * It's easier and faster to create test and understand board points position in a more human readable format
@@ -9,23 +9,23 @@ import be.bnp.katas.tictactoe.ui.TicTacToePointState
  * ,or
  * x,_,_
  * o,_,x
- * o,x,o to [TicTacToeGridItemData]
+ * o,x,o to [BoardPoints]
  */
-val String.asGridItemData: List<TicTacToeGridItemData>
+val String.asBoardPoints: BoardPoints
     get() {
         // "x,_,_","o,_,x","o,x,o"
         val rows = this.split('\n')
         return List(rows.size) { column ->
             List(rows.size) { row ->
                 val pointState = rows[column].split(',')[row].asBoardPointState
-                TicTacToeGridItemData(column, row, pointState)
+                BoardPoint(column, row, pointState)
             }
-        }.flatten()
+        }
     }
 
-private val String.asBoardPointState: TicTacToePointState
+val String.asBoardPointState: BoardPoint.State
     get() = when (lowercase()) {
-        "x" -> TicTacToePointState.Cross
-        "o" -> TicTacToePointState.Nought
-        else -> TicTacToePointState.Empty
+        "x" -> BoardPoint.State.Cross
+        "o" -> BoardPoint.State.Nought
+        else -> BoardPoint.State.Empty
     }

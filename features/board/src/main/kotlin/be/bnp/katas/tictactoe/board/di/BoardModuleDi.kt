@@ -4,7 +4,6 @@ import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
 import be.bnp.katas.tictactoe.domain.repository.BoardRepository
 import be.bnp.katas.tictactoe.domain.usecase.draw.CheckDrawUseCase
-import be.bnp.katas.tictactoe.domain.usecase.draw.DrawUseCase
 import be.bnp.katas.tictactoe.domain.usecase.move.MakeAMoveUseCase
 import be.bnp.katas.tictactoe.domain.usecase.reset.ResetTheBoardUseCase
 import be.bnp.katas.tictactoe.domain.usecase.victory.CheckColumnVictoryUseCase
@@ -47,7 +46,7 @@ val boardModuleDi = module {
         CheckDiagonalVictoryUseCase(get<BoardRepository>())
     }
 
-    factory<DrawUseCase> {
+    factory<CheckDrawUseCase> {
         CheckDrawUseCase(get<BoardRepository>())
     }
 

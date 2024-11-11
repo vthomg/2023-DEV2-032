@@ -6,14 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-
-sealed interface GameState {
-    data class MakeATurn(val user: String) : GameState
-
-    data class Victory(val user: String) : GameState
-
-    data object Draw : GameState
-}
+import be.bnp.katas.tictactoe.domain.model.GameState
 
 @Composable
 fun GameStateText(gameState: GameState, modifier: Modifier = Modifier) {
@@ -27,7 +20,11 @@ fun GameStateText(gameState: GameState, modifier: Modifier = Modifier) {
 
 private val GameState.text: String
     @Composable get() = when (this) {
-        is GameState.MakeATurn -> LocalContext.current.getString(R.string.make_a_turn, user)
-        is GameState.Victory -> LocalContext.current.getString(R.string.victory, user)
+        is GameState.MakeATurn -> LocalContext.current.getString(
+            R.string.make_a_turn,
+            player
+        )
+
+        is GameState.Victory -> LocalContext.current.getString(R.string.victory, player.toString())
         is GameState.Draw -> LocalContext.current.getString(R.string.draw)
     }

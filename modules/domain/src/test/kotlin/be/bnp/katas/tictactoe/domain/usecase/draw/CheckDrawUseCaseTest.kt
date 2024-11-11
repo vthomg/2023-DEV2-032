@@ -26,7 +26,7 @@ class CheckDrawUseCaseTest {
             o,x,x
             _,o,o
         """.trimIndent()
-        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.Cross)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
@@ -40,7 +40,7 @@ class CheckDrawUseCaseTest {
             o,x,_
             _,o,o
         """.trimIndent()
-        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.Cross)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 

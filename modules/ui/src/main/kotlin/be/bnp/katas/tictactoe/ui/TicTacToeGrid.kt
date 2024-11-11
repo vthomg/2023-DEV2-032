@@ -9,18 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-
-data class TicTacToeGridItemData(
-    val row: Int,
-    val column: Int,
-    val state: TicTacToePointState,
-)
-
-enum class TicTacToePointState {
-    Cross,
-    Nought,
-    Empty,
-}
+import be.bnp.katas.tictactoe.domain.model.BoardPoint
 
 object TicTacToeGridDefaults {
     val verticalSpacing: Dp = 8.dp
@@ -29,7 +18,7 @@ object TicTacToeGridDefaults {
 
 @Composable
 fun TicTacToeGrid(
-    gridItems: List<TicTacToeGridItemData>,
+    gridItems: List<BoardPoint>,
     boardSize: Int,
     onClick: (row: Int, column: Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -51,23 +40,23 @@ fun TicTacToeGrid(
 }
 
 @Composable
-private fun TicTacToeGridItem(pointState: TicTacToePointState, onClick: () -> Unit) {
+private fun TicTacToeGridItem(pointState: BoardPoint.State, onClick: () -> Unit) {
     when (pointState) {
-        TicTacToePointState.Cross -> TextualPoint(
+        BoardPoint.State.Cross -> TextualPoint(
             "X",
             backgroundColor = Color.Magenta,
             color = Color.White,
             onClick = onClick
         )
 
-        TicTacToePointState.Nought -> TextualPoint(
+        BoardPoint.State.Nought -> TextualPoint(
             "O",
             backgroundColor = Color.Cyan,
             color = Color.White,
             onClick = onClick
         )
 
-        TicTacToePointState.Empty -> TextualPoint(
+        BoardPoint.State.Empty -> TextualPoint(
             "",
             backgroundColor = Color.White,
             onClick = onClick

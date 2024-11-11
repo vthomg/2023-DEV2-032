@@ -14,6 +14,8 @@ android {
 
 dependencies {
     implementation(project(":modules:ui"))
+    implementation(project(":modules:domain"))
+
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)

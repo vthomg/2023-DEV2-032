@@ -33,8 +33,8 @@ class ResetTheBoardUseCaseTest {
 
     @Test
     fun `Reset the board resets the board`() {
-        val givenPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.CROSS)
-        val expectedPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.EMPTY)
+        val givenPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.Cross)
+        val expectedPoint = BoardPoint(row = 1, column = 2, BoardPoint.State.Empty)
 
         assertTrue(makeAMoveUseCase(givenPoint))
         resetTheBoardUseCase()

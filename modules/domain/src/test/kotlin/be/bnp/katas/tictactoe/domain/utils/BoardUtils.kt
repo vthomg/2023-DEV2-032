@@ -33,14 +33,14 @@ val BoardPoints.asString: String
 
 val String.asBoardPointState: BoardPoint.State
     get() = when (lowercase()) {
-        "x" -> BoardPoint.State.CROSS
-        "o" -> BoardPoint.State.NOUGHT
-        else -> BoardPoint.State.EMPTY
+        "x" -> BoardPoint.State.Cross
+        "o" -> BoardPoint.State.Nought
+        else -> BoardPoint.State.Empty
     }
 
 val BoardPoint.State.asHumanReadable: String
     get() = when (this) {
-        BoardPoint.State.EMPTY -> "_"
-        BoardPoint.State.NOUGHT -> "o"
-        BoardPoint.State.CROSS -> "x"
+        BoardPoint.State.Empty -> "_"
+        BoardPoint.State.Nought -> "o"
+        BoardPoint.State.Cross -> "x"
     }

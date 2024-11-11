@@ -26,7 +26,7 @@ class CheckRowVictoryUseCaseTest {
             o,x,x
             _,o,o
         """.trimIndent()
-        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.NOUGHT)
+        val givenPoint = BoardPoint(row = 2, column = 0, BoardPoint.State.Nought)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
@@ -40,7 +40,7 @@ class CheckRowVictoryUseCaseTest {
             _,_,_
             _,_,_
         """.trimIndent()
-        val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.Cross)
 
         val useCase = CheckColumnVictoryUseCaseTest.useCaseForBoardPoints(givenBoard.asBoardPoints)
 

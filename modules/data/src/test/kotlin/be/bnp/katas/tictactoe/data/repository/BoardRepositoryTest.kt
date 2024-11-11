@@ -53,7 +53,7 @@ class BoardRepositoryTest {
 
     @Test
     fun `BoardRepository updates the point on the board`() {
-        val givenPoint = BoardPoint(0, 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(0, 0, BoardPoint.State.Cross)
 
         boardRepository.updatePoint(givenPoint)
 
@@ -63,14 +63,14 @@ class BoardRepositoryTest {
 
     @Test
     fun `BoardRepository correctly checks for the point validity for the board`() {
-        val givenPoint = BoardPoint(5, 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(5, 0, BoardPoint.State.Cross)
 
         assertFalse(boardRepository.isPointValidForBoard(givenPoint))
     }
 
     @Test
     fun `BoardRepository updatePoint() rejects invalid point`() {
-        val givenPoint = BoardPoint(5, 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(5, 0, BoardPoint.State.Cross)
 
         boardRepository.updatePoint(givenPoint)
 
@@ -79,7 +79,7 @@ class BoardRepositoryTest {
 
     @Test
     fun `BoardRepository cleanBoard cleans the board`() {
-        val givenPoint = BoardPoint(0, 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(0, 0, BoardPoint.State.Cross)
 
         boardRepository.updatePoint(givenPoint)
         boardRepository.cleanBoard()

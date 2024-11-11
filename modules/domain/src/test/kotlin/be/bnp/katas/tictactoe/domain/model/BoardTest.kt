@@ -6,7 +6,7 @@ import org.junit.Test
 class BoardTest {
     @Test
     fun `getPointFor(row, column) returns the correct point`() {
-        val givenPoint = BoardPoint(0, 1, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(0, 1, BoardPoint.State.Cross)
         val givenBoard = Board(
             mutableListOf(
                 mutableListOf(
@@ -27,7 +27,7 @@ class BoardTest {
 
     @Test
     fun `updatePointFor(row, column) updates the point on the board`() {
-        val givenPoint = BoardPoint(0, 0, BoardPoint.State.CROSS)
+        val givenPoint = BoardPoint(0, 0, BoardPoint.State.Cross)
         val givenBoard = Board(
             mutableListOf(
                 mutableListOf(
