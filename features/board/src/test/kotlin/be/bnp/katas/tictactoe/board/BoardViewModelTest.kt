@@ -1,9 +1,9 @@
 package be.bnp.katas.tictactoe.board
 
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
-import be.bnp.katas.tictactoe.data.game.TicTacToeGameRulesImpl
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
 import be.bnp.katas.tictactoe.data.usecase.draw.CheckDrawUseCase
+import be.bnp.katas.tictactoe.data.usecase.move.MakeAMoveUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckColumnVictoryUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckDiagonalVictoryUseCase
 import be.bnp.katas.tictactoe.data.usecase.victory.CheckRowVictoryUseCase
@@ -39,8 +39,10 @@ class BoardViewModelTest {
         )
         viewModel = BoardViewModel(
             testDispatcher,
-            BoardRepositoryImpl(),
-            TicTacToeGameRulesImpl(repository, victoryUseCases, CheckDrawUseCase(repository))
+            repository,
+            victoryUseCases,
+            CheckDrawUseCase(repository),
+            MakeAMoveUseCase(repository)
         )
     }
 
