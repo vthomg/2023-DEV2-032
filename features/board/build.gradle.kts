@@ -30,4 +30,5 @@ dependencies {
     testImplementation(libs.kotlin.test)
     testImplementation(libs.testing.coroutines)
     testImplementation(libs.testing.androidx.core)
+    testImplementation(libs.testing.turbine)
 }

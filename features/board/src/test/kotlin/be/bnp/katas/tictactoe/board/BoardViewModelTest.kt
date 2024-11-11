@@ -1,5 +1,6 @@
 package be.bnp.katas.tictactoe.board
 
+import app.cash.turbine.test
 import be.bnp.katas.tictactoe.board.viewmodel.BoardViewModel
 import be.bnp.katas.tictactoe.data.repository.BoardRepositoryImpl
 import be.bnp.katas.tictactoe.domain.model.Player
@@ -10,7 +11,9 @@ import be.bnp.katas.tictactoe.domain.usecase.victory.CheckDiagonalVictoryUseCase
 import be.bnp.katas.tictactoe.domain.usecase.victory.CheckRowVictoryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -31,7 +34,7 @@ class BoardViewModelTest {
     }
 
     @Before
-    fun createBoardViewModel() {
+    fun setup() {
         val repository = BoardRepositoryImpl()
         val victoryUseCases = listOf(
             CheckColumnVictoryUseCase(repository),
@@ -59,38 +62,47 @@ class BoardViewModelTest {
 
     @Test
     fun `Verify turn change is dispatched after placing point`() = runTest {
-        val expectedTurn = Player.Nought
+        viewModel.game.drop(1).test {
+            val expectedTurn = Player.Nought
 
-        viewModel.pointClicked(0, 1)
-        val game = viewModel.game.value
+            viewModel.pointClicked(0, 1)
+            advanceUntilIdle()
 
-        assert(game is BoardViewModel.Game.GameIsHappening)
-        require(game is BoardViewModel.Game.GameIsHappening)
-        assertEquals(expectedTurn, game.turnBy.player)
+            val game = awaitItem()
+
+            assert(game is BoardViewModel.Game.GameIsHappening)
+            require(game is BoardViewModel.Game.GameIsHappening)
+            assertEquals(expectedTurn, game.turnBy.player)
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
     fun `Verify viewmodel checks if the point can be placed before changing the turn`() = runTest {
-        val expectedTurn = Player.Cross
+        viewModel.game.drop(1).test {
+            viewModel.pointClicked(0, 20)
+            advanceUntilIdle()
 
-        viewModel.pointClicked(0, 1)
-        val game = viewModel.game.value
-
-        assert(game is BoardViewModel.Game.GameIsHappening)
-        require(game is BoardViewModel.Game.GameIsHappening)
-        assertEquals(expectedTurn, game.turnBy.player)
+            expectNoEvents()
+        }
     }
 
     @Test
     fun `Verify viewmodel updates the board`() = runTest {
-        val initialGameSetup = viewModel.game.value
-        require(initialGameSetup is BoardViewModel.Game.GameIsHappening)
-        val givenBoard = initialGameSetup.points
+        viewModel.game.test {
+            val initialGameSetup = awaitItem()
 
-        viewModel.pointClicked(0, 1)
-        val actualGameAfterClick = viewModel.game.value
-        require(actualGameAfterClick is BoardViewModel.Game.GameIsHappening)
+            require(initialGameSetup is BoardViewModel.Game.GameIsHappening)
+            val givenBoard = initialGameSetup.points
 
-        assertNotEquals(givenBoard, actualGameAfterClick.points)
+            viewModel.pointClicked(0, 1)
+            advanceUntilIdle()
+
+            val actualGameAfterClick = awaitItem()
+
+            require(actualGameAfterClick is BoardViewModel.Game.GameIsHappening)
+            assertNotEquals(givenBoard, actualGameAfterClick.points)
+        }
     }
 }
