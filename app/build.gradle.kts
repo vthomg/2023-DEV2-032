@@ -14,9 +14,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":modules:domain"))
-    implementation(project(":modules:data"))
-    implementation(project(":features:board"))
+    implementation(projects.modules.domain)
+    implementation(projects.modules.data)
+    implementation(projects.features.board)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.koin.compose)

@@ -14,9 +14,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":modules:domain"))
-    implementation(project(":modules:data"))
-    implementation(project(":modules:ui"))
+    implementation(projects.modules.domain)
+    implementation(projects.modules.data)
+    implementation(projects.modules.ui)
 
     implementation(libs.koin.compose)
 
