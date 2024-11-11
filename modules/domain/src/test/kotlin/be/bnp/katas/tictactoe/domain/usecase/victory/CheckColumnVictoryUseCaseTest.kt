@@ -11,7 +11,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class CheckColumnVictoryUseCaseTest {
-    companion object {
+    private companion object {
         fun useCaseForBoardPoints(boardPoints: BoardPoints): CheckColumnVictoryUseCase {
             val repositoryMocked = mockk<BoardRepository>()
             every { repositoryMocked.boardPoints } returns boardPoints
@@ -83,6 +83,20 @@ class CheckColumnVictoryUseCaseTest {
             _,x,_
         """.trimIndent()
         val givenPoint = BoardPoint(row = 0, column = 1, BoardPoint.State.Cross)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Column Victory is not detected on corners`() {
+        val givenBoard = """
+            _,_,_
+            _,_,_
+            _,_,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 0, column = 2, BoardPoint.State.Cross)
 
         val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 

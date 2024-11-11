@@ -11,7 +11,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class CheckDiagonalVictoryUseCaseTest {
-    companion object {
+    private companion object {
         fun useCaseForBoardPoints(boardPoints: BoardPoints): CheckDiagonalVictoryUseCase {
             val repositoryMocked = mockk<BoardRepository>()
             every { repositoryMocked.boardPoints } returns boardPoints
@@ -48,7 +48,7 @@ class CheckDiagonalVictoryUseCaseTest {
     }
 
     @Test
-    fun `Diagonal Victory is not detected with all empty`() {
+    fun `Diagonal bottom right corner with empty board is not detected`() {
         val givenBoard = """
             _,_,_
             _,_,_
@@ -56,7 +56,21 @@ class CheckDiagonalVictoryUseCaseTest {
         """.trimIndent()
         val givenPoint = BoardPoint(row = 2, column = 2, BoardPoint.State.Cross)
 
-        val useCase = CheckColumnVictoryUseCaseTest.useCaseForBoardPoints(givenBoard.asBoardPoints)
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
+
+        assertFalse(useCase(givenPoint))
+    }
+
+    @Test
+    fun `Diagonal top right corner with empty board is not detected`() {
+        val givenBoard = """
+            _,_,_
+            _,_,_
+            _,_,_
+        """.trimIndent()
+        val givenPoint = BoardPoint(row = 0, column = 2, BoardPoint.State.Cross)
+
+        val useCase = useCaseForBoardPoints(givenBoard.asBoardPoints)
 
         assertFalse(useCase(givenPoint))
     }
