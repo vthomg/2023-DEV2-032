@@ -26,6 +26,12 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material3)
 
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.ui.test.manifest)
+
     testImplementation(libs.testing.koin)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.testing.coroutines)

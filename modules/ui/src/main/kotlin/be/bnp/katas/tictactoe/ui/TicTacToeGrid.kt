@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import be.bnp.katas.tictactoe.domain.model.BoardPoint
+import be.bnp.katas.tictactoe.ui.utils.TestTags
+import be.bnp.katas.tictactoe.ui.utils.testTag
 
 object TicTacToeGridDefaults {
     val verticalSpacing: Dp = 8.dp
@@ -26,7 +28,7 @@ fun TicTacToeGrid(
     horizontalSpacing: Dp = TicTacToeGridDefaults.horizontalSpacing,
 ) {
     LazyVerticalGrid(
-        modifier = modifier,
+        modifier = modifier.testTag(TestTags.TicTacToeGrid),
         columns = GridCells.Fixed(boardSize),
         verticalArrangement = Arrangement.spacedBy(verticalSpacing),
         horizontalArrangement = Arrangement.spacedBy(horizontalSpacing),

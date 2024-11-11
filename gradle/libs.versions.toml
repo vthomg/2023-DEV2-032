@@ -15,12 +15,10 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.10.01"
 appcompat = "1.7.0"
-material = "1.12.0"
 mockito = "5.12.0"
 mockk = "1.13.12"
 androidxCoreTesting = "2.2.0"
 screenshot = "0.0.1-alpha07"
-materialVersion = "1.12.0"
 turbine = "1.2.0"
 
 [libraries]

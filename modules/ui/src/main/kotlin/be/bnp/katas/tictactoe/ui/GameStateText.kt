@@ -4,15 +4,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import be.bnp.katas.tictactoe.domain.model.GameState
+import be.bnp.katas.tictactoe.ui.utils.TestTags
+import be.bnp.katas.tictactoe.ui.utils.testTag
 
 @Composable
 fun GameStateText(gameState: GameState, modifier: Modifier = Modifier) {
     Text(
         gameState.text,
-        modifier = modifier,
+        modifier = modifier.testTag(TestTags.GameStateText),
         fontSize = 18.sp,
         textAlign = TextAlign.Center
     )
